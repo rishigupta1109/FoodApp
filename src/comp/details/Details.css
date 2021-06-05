@@ -1,0 +1,29 @@
+#details-section{
+    
+    margin:0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    height:200px;
+    padding: 100px;
+    background-color: rgba(29, 28, 26, 0.445);
+    border-radius: 10px;
+
+}
+#bg-img{
+    background-image: url(../../icons/pizza.jpg);
+    background-size: cover;
+    padding: 100px;
+    
+}
+#details-heading{
+    color:white;
+}
+#details-para{
+    color:white;
+    font-size: 120%;
+    font-style: normal;
+    font-weight: bold;
+
+}

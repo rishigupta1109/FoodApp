@@ -1,0 +1,30 @@
+#food-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: orange;
+    padding:25px;
+    border-radius: 5px;
+}
+#food-img{
+    background-image:url("../../icons/pizza.jpg");
+    background-size: cover;
+    background-color: white;
+    height:80px;
+    width:80px;
+    border-radius: 100%;
+}
+#amount{
+    height: 50px;
+    width: 150px;
+    margin-top: 10px;
+    border-radius:15px;
+    border-color: orange;
+}
+#add-to-cart{
+    height:50;
+    width: 120px;
+    margin-top: 5px;
+    border-radius:15px;
+    border-color: orange;
+}
