@@ -2,7 +2,7 @@
     display:grid;
     grid-auto-columns: 450px 350px 300px 100px;
     background-color: rgb(235, 156, 11);
-    position: sticky;
+    /* position: sticky; */
     top:0.1px;
     
     

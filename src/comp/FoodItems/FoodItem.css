@@ -5,10 +5,11 @@
     background-color: orange;
     padding:25px;
     border-radius: 5px;
+    margin:10px;
 }
 #food-img{
-    background-image:url("../../icons/pizza.jpg");
-    background-size: cover;
+    
+    
     background-color: white;
     height:80px;
     width:80px;

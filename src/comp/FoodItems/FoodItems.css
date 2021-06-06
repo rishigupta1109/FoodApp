@@ -1,5 +1,10 @@
 #food-items{
-    height:500px;
+    
     padding:25px;
     background-color: rgb(240, 240, 240);
+    border-radius: 6px;
+}
+#order-now-heading{
+    color:black;
+    text-align: center;
 }
