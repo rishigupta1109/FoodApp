@@ -2,10 +2,19 @@
     display:grid;
     grid-auto-columns: 450px 350px 300px 100px;
     background-color: rgb(235, 156, 11);
-    /* position: sticky; */
+    position: initial;
     top:0.1px;
     
     
+}
+#ItemNo{
+    border-radius :100%;
+    background-color: orange;
+    color: white;
+    width:50%;
+
+
+
 }
 #heading{
     grid-column-start: 0;
@@ -18,6 +27,7 @@
 
 }
 #cart-button{
+    width:120%;
     margin:10px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -28,11 +38,16 @@
     font-weight: bolder;
     font-family: sans-serif;
     background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  
     
 }
 #cart-img{
-    height:25px;
+    height:35px;
 }
 #cart-text{
-    padding: 10px !important;
+   display: inline;
+   font-size: 2;
 }

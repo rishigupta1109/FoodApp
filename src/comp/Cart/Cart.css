@@ -23,8 +23,22 @@
     margin: 15px;
     margin-left:300px;
 }
+#crossimg{
+    height:25px;
+ 
+    margin: 0px;
+}
+#crossbut{
+    height: 35px;
+    width: 35px;
+    border-radius: 100%;
+    padding: 0px;
+    background-color: rgba(255, 255, 240, 0);
+    margin-left: auto;
+
+}
 #cartimg{
-    height:60px;
+    height:60px;margin-left: 25px;
     
 }
 #headimg{
@@ -32,4 +46,27 @@
     flex-direction: row;
     justify-content: center;
 
+}
+#cart-heading{
+    margin-left: 325px;
+}
+.totaldiv{
+    font-size: 25px;
+    font-weight: bolder;
+}
+#HomeBut{
+    margin:25px;
+    margin-left: 325px;
+    height:50px;
+    width:150px;
+    font-size:25px;
+    background-color: orange;
+    color: black;
+    font-weight: bolder;
+    border-radius: 5px;
+    border-color: white;
+
+}
+#EYF{
+    
 }

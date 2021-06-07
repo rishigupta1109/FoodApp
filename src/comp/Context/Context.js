@@ -1,5 +1,7 @@
 import React from "react";
-
-const Context=React.createContext({Cart:false});
+const amountChangeHandler=()=>{
+    
+}
+const Context=React.createContext({Cart:false,amountChange: amountChangeHandler});
 
 export default Context;
