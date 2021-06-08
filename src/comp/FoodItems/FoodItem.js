@@ -34,7 +34,7 @@ const FoodItem=(props)=>{
             <img id="food-img" alt="pizza" src={props.src}  ></img>
             <h2 id="food-name">{props.name}</h2>
             <h2 id="food-price">{props.price}Rs</h2>
-            {props.ordered===undefined&&<input type="number" name={props.name} value={value} onChange={changeHandler} id="amount" ></input>}
+            {props.ordered===undefined&&<input type="number" min="0" max='100' name={props.name} value={value} onChange={changeHandler} id="amount" ></input>}
             {props.ordered===true&& <h2 id="food-name">{props.amount}</h2>}
             {ctx.Cart&& <h2 id="food-price">{props.Total}Rs</h2>}
             {!ctx.Cart&&<button id="add-to-cart" onClick={clickHandler}>Add to Cart</button>}
