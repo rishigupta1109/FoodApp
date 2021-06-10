@@ -1,4 +1,5 @@
 #food-item{
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.527);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -6,6 +7,22 @@
     padding:25px;
     border-radius: 5px;
     margin:10px;
+}
+input:focus{
+    outline: none;
+}
+.changebutton{
+    border-radius: 100%;
+    height:30px;
+    width:30px;
+    background-color: white;
+    border : none;
+    color:black;
+    font-weight: bolder;
+    font-size: larger;
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 #food-img{
     
