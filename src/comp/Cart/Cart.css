@@ -12,17 +12,24 @@
     margin-left:250px;
     margin-top: 20px;
     border-radius: 15px;
+    background-image: linear-gradient(to bottom ,white,lightblue);
 
 }
 #order-button{
     height:50px;
     width:150px;
-    border-color: white;
-    background-color: orange;
+    color: white;
+    border-color: orange;
+    /* background-color: orange; */
+    font-size:25px;
     border-radius: 5px;
     margin: 15px;
     margin-left:300px;
+    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
 }
+#order-button:hover{
+    background-image: linear-gradient(to bottom ,orange,orange);
+    box-shadow: 0px 7px 7px 0 rgba(248, 52, 3, 0.158), 0px 7px 7px rgba(255, 38, 0, 0.178);}
 #crossimg{
     height:25px;
  
@@ -54,6 +61,10 @@
     font-size: 25px;
     font-weight: bolder;
 }
+#HomeBut:hover{
+    background-image: linear-gradient(to bottom ,orange,orange);
+    box-shadow: 0px 7px 7px 0 rgba(248, 52, 3, 0.158), 0px 7px 7px rgba(255, 38, 0, 0.178);
+}
 #HomeBut{
     margin:25px;
     margin-left: 325px;
@@ -61,10 +72,11 @@
     width:150px;
     font-size:25px;
     background-color: orange;
-    color: black;
+    color: rgb(255, 253, 253);
     font-weight: bolder;
     border-radius: 5px;
-    border-color: white;
+    border-color: rgb(243, 118, 2);
+    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
 
 }
 #EYF{

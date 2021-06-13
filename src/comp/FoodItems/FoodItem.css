@@ -4,6 +4,7 @@
     flex-direction: row;
     justify-content: space-between;
     background-color: orange;
+    background-image: linear-gradient(to bottom right, rgb(255, 115, 0), rgb(235, 179, 75));
     padding:25px;
     border-radius: 5px;
     margin:10px;
@@ -11,7 +12,9 @@
 input:focus{
     outline: none;
 }
+.changebutton:hover{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
 .changebutton{
+ 
     border-radius: 100%;
     height:30px;
     width:30px;
@@ -45,4 +48,9 @@ input:focus{
     margin-top: 5px;
     border-radius:15px;
     border-color: orange;
+    font-weight: bolder;
+    font-family: sans-serif;
+    font-size: 100%;
+    background-image: linear-gradient(to bottom,white,rgba(255, 255, 255, 0.438));
 }
+#add-to-cart:hover{box-shadow: 0px 7px 7px 0 rgba(248, 52, 3, 0.158), 0px 7px 7px rgba(255, 38, 0, 0.178);}

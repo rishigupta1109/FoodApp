@@ -1,11 +1,19 @@
 #Navbar{
     display:grid;
     grid-auto-columns: 450px 350px 300px 100px;
-    background-color: rgb(235, 156, 11);
+    /* background-color: rgb(235, 156, 11); */
+    background-image: linear-gradient(to right, rgb(255, 115, 0), rgb(235, 179, 75));
     position: initial;
     top:0.1px;
     
     
+}
+#logo{
+    grid-column-start: 0;
+    grid-column-end: 1;
+    height: 75px;
+    width: 75px;
+    border-radius: 100%;
 }
 #ItemNo{
     border-radius :100%;
@@ -17,8 +25,8 @@
 
 }
 #heading{
-    grid-column-start: 0;
-    grid-column-end: 1;
+    grid-column-start: 1;
+    grid-column-end: 2;
     padding-left: 20px;
     color:white;
     font-style: oblique;
@@ -43,6 +51,9 @@
     justify-content: space-evenly;
   
     
+}
+#cart-button:hover{
+    box-shadow: 0px 7px 7px 0 rgba(248, 52, 3, 0.158), 0px 7px 7px rgba(255, 38, 0, 0.178);
 }
 #cart-img{
     height:35px;

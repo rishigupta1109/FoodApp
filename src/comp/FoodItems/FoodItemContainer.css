@@ -1,5 +1,6 @@
 #FoodItemContainer{
     background-color: orange;
+    background-image: linear-gradient(to bottom right, rgb(255, 115, 0), rgb(235, 179, 75));
     padding:25px;
     
 }
