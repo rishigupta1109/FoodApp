@@ -6,6 +6,8 @@
     /* align-items: center; */
     margin: 15px;
     padding: 25px;
+    height:1000px;
+    overflow: scroll;
 }
 #YO{
     margin-left: 250px;
