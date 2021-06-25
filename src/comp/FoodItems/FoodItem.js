@@ -17,26 +17,40 @@ const FoodItem=(props)=>{
         })
 }
     }
-    const [value,setvalue]=useState(0);
-    const changeHandler=(e)=>{
-        
-        
-
-
-    }
+    const [value,setvalue]=useState('0');
+    
     const valueChanger=(e)=>{
         if(e.target.name==="plus"){
             input.current.value=Number(input.current.value)+1;
+            !ctx.Cart&&props.onclick({
+                src:props.src,
+                name:props.name,
+                amount:1,
+                price:props.price,
+                id:props.id,
+                Total:props.price*input.current.value
+    
+            });
         }
-        else{if(input.current.value!=='0') {input.current.value=Number(input.current.value)-1;}}
+        else{if(input.current.value!=='0') {input.current.value=Number(input.current.value)-1;
+            !ctx.Cart&&props.onclick({
+                src:props.src,
+                name:props.name,
+                amount:-1,
+                price:props.price,
+                id:props.id,
+                Total:props.price*input.current.value
+    
+            });}}
         setvalue(input.current.value);
         ctx.Cart&&ctx.amountChange(input.current.name,input.current.value);
         ctx.Cart&&props.changeHandler(input.current.name,input.current.value);
         console.log(e.target.value);
+        
 
     }
-    useEffect(()=>{if(ctx.Cart)
-    {setvalue(props.amount);}
+    useEffect(()=>{
+    setvalue(props.amount);
     },[])
     return (
         <div id="food-item">
@@ -44,12 +58,12 @@ const FoodItem=(props)=>{
             <h2 id="food-name">{props.name}</h2>
             <h2 id="food-price">{props.price}Rs</h2>
             {props.ordered===undefined&&<div id="packetinput"><button onClick={valueChanger} name="minus" className="changebutton">-</button> 
-             <input readOnly ref={input} type="number"  min="0" max='100' name={props.name} value={value} onChange={changeHandler} id="amount" ></input>
+             <input readOnly ref={input} type="number"  min="0" max='100' name={props.name} value={value}  id="amount" ></input>
              <button onClick={valueChanger} name="plus" className="changebutton">+</button></div>}
              {props.ordered&&<h2 id="food-price">{props.amount}X</h2>}
             {props.ordered===true&& <h2 id="food-name">{props.amount}</h2>}
             {(ctx.Cart||props.ordered)&& <h2 id="food-price">{props.Total}Rs</h2>}
-            {!ctx.Cart&&!props.ordered&&<button id="add-to-cart" onClick={clickHandler}>Add to Cart</button>}
+           
         </div>
     );
 }

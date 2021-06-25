@@ -7,7 +7,7 @@ const FoodItemContainer=(props)=>{
     }
     return (
         <div id="FoodItemContainer">
-            <FoodItems onclick={clickHandler}></FoodItems>
+            <FoodItems cartfoodarray={props.cartFoodArray} onclick={clickHandler}></FoodItems>
         </div>
 
     )

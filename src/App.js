@@ -121,13 +121,19 @@ function App() {
       setModal(true);
       setModalmessage("wrong user id or password");
   }
+  
+
+
+
+
+
   return (
     <div id="App">
       {modal&&<Modal message={modalmessage} closeModal={closeModal}></Modal>}
     <Context.Provider value={{Cart:cart ,amountChange:amountChangeHandler}}>
     <Navbar openYourorder={openYourorder} isLoggedIn={isLoggedIn}  logout={logoutHandler} sticky={cart} itemsNo={noofitems} onclick={navbarcartcall} UserName={UserName}></Navbar>
     {isLoggedIn&&<><Details></Details>
-      <FoodItemContainer onclick={FoodCartObject} ></FoodItemContainer></>}
+      <FoodItemContainer onclick={FoodCartObject} cartFoodArray={cartFoodArray} ></FoodItemContainer></>}
      {signup&&<Signup signupmodal={signupmodal} login={loginhandler}></Signup>}
     {login&& <Login loginModal={loginModal} signup={signuphandler} logIn={loggedIn} UserNameHandler={UserNameHandler}></Login>}
     {isLoading&&<div id="loading-box"><h2 id="loading-text">Loading<img id="loading-img" src={loading} alt="loading" ></img></h2></div>}

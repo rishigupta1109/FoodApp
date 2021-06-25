@@ -43,12 +43,21 @@ const FoodItems=(props)=>{
     const clickHandler=(obj)=>{
         props.onclick(obj);
     }
+    let noofiteminobj=[];
+    items.map((data)=>{data.map((key)=>{let bool=false;
+        props.cartfoodarray.map((value)=>{
+            if(value.name===key.name){noofiteminobj.push(value.amount); bool=true;}
+        })
+        if(!bool){
+            noofiteminobj.push(0);
+        }})
+    })
     return (
         <div id="food-items">
         <h1 id="order-now-heading">Order Now!</h1>
         {isLoading&&<h1>Loading<img src={loading} alt="loading" id="loading-img"></img></h1>}
-        {items.map((data)=>{return data.map((value)=>{return(<FoodItem key={Math.random()} onclick={clickHandler} 
-        id={value.id} src={value.src} name={value.name} price={value.price}></FoodItem>)})})}
+        {items.map((data)=>{return data.map((value,index)=>{return(<FoodItem key={Math.random()} onclick={clickHandler} 
+        id={value.id} src={value.src} amount={noofiteminobj[index]}  name={value.name} price={value.price}></FoodItem>)})})}
         </div>
     )
 }
