@@ -1,10 +1,46 @@
 #backdrop{
+    z-index: 2;
     position: absolute;
     height:100em;
     width:100%;
     background-color: rgba(0, 0, 0, 0.562);
 }
-#cart{
+#checkoutform{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#formitem{
+    /* margin-left:50%; */
+    padding:5px;
+}
+input[type="text"]{
+    border-radius: 10px;
+    padding:5px;
+}
+#info{
+    display: flex;
+    margin: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.527);
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
+}
+.submit-btn{
+    margin-top:10px;
+    margin-bottom: 10px;
+    height:3rem;
+    width:6rem;
+    border-color:orange;
+    border-radius:10px;
+    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
+}
+.cart{
+    z-index: 3;
     width:60%;
     position: absolute;
     align-self: center;
@@ -12,8 +48,19 @@
     margin-left:250px;
     margin-top: 20px;
     border-radius: 15px;
-    background-image: linear-gradient(to bottom ,white,lightblue);
+    box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12)
+;
+    /* background-image: linear-gradient(to bottom ,white,lightblue); */
 
+}
+#paiic{
+    margin:20px;
 }
 #order-button{
     height:50px;
@@ -56,6 +103,7 @@
 }
 #cart-heading{
     margin-left: 325px;
+    text-decoration: underline;
 }
 .totaldiv{
     font-size: 25px;
@@ -78,7 +126,4 @@
     border-color: rgb(243, 118, 2);
     background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
 
-}
-#EYF{
-    
 }

@@ -46,9 +46,10 @@ const FoodItem=(props)=>{
             {props.ordered===undefined&&<div id="packetinput"><button onClick={valueChanger} name="minus" className="changebutton">-</button> 
              <input readOnly ref={input} type="number"  min="0" max='100' name={props.name} value={value} onChange={changeHandler} id="amount" ></input>
              <button onClick={valueChanger} name="plus" className="changebutton">+</button></div>}
+             {props.ordered&&<h2 id="food-price">{props.amount}X</h2>}
             {props.ordered===true&& <h2 id="food-name">{props.amount}</h2>}
-            {ctx.Cart&& <h2 id="food-price">{props.Total}Rs</h2>}
-            {!ctx.Cart&&<button id="add-to-cart" onClick={clickHandler}>Add to Cart</button>}
+            {(ctx.Cart||props.ordered)&& <h2 id="food-price">{props.Total}Rs</h2>}
+            {!ctx.Cart&&!props.ordered&&<button id="add-to-cart" onClick={clickHandler}>Add to Cart</button>}
         </div>
     );
 }

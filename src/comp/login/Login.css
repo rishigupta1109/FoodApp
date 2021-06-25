@@ -1,0 +1,22 @@
+#login-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+div#login-signup-container {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+}
+div#login-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    padding:50px;
+}

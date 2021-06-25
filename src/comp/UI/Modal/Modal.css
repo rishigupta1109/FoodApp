@@ -1,0 +1,28 @@
+#modalbox{
+    position: absolute;
+    width:500px;
+    left:500px;
+    top:200px;
+    padding:20px;
+    padding-top:10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    z-index: 2;
+}
+#message{
+    margin-bottom:25px;
+    /* width:500px; */
+    /* background-color: orange; */
+}
+#ok{
+    margin-top: 10px;
+ background-color: orange;
+ border-radius: 20px;
+ border: none;
+ width:80px;
+ font-size: larger;
+}

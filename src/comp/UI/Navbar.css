@@ -1,6 +1,9 @@
 #Navbar{
-    display:grid;
-    grid-auto-columns: 450px 350px 300px 100px;
+    display:flex;
+    flex-direction: row;
+    /* justify-content: space-around;  */
+    align-items: center;
+    /* grid-auto-columns: 450px 350px 0px 300px 100px; */
     /* background-color: rgb(235, 156, 11); */
     background-image: linear-gradient(to right, rgb(255, 115, 0), rgb(235, 179, 75));
     position: initial;
@@ -9,8 +12,8 @@
     
 }
 #logo{
-    grid-column-start: 0;
-    grid-column-end: 1;
+    /* grid-column-start: 0; */
+    /* grid-column-end: 1; */
     height: 75px;
     width: 75px;
     border-radius: 100%;
@@ -30,20 +33,29 @@
     padding-left: 20px;
     color:white;
     font-style: oblique;
-    margin-top: 25px;
+    margin-top: 15px;
+}
     
 
+
+#UserName{
+    /* grid-column-start: 4;
+    grid-column-end: 5; */
+    margin-right:10px;
+   padding-top: 10px;
+   color:white;
+    font-size: x-large;
 }
 #cart-button{
-    width:120%;
-    margin:10px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    grid-column-start: 4;
-    grid-column-end: 5;
+    width:150px;
+    /* margin:20px 5px 20px 5px ; */
+    
+    /* grid-column-start: 5;
+    grid-column-end: 6; */
     border-radius:15px;
     border-color: orange;
-    font-weight: bolder;
+    font-weight: 100;
+    font-size: 2;
     font-family: sans-serif;
     background-color: white;
     display: flex;
@@ -51,6 +63,20 @@
     justify-content: space-evenly;
   
     
+}
+#head-part{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    float: left;
+
+}
+#bottom-part{
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+   margin-left: auto;
+
 }
 #cart-button:hover{
     box-shadow: 0px 7px 7px 0 rgba(248, 52, 3, 0.158), 0px 7px 7px rgba(255, 38, 0, 0.178);
