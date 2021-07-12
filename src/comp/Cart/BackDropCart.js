@@ -48,7 +48,7 @@ const BackdropCart = (props) => {
         document.getElementById("cart-root")
       )}
       {checkout&&!ordered&&reactDom.createPortal(
-        <CheckoutForm itemscount={itemscount} ordered={orderHandler} Array={Array} onclick={clickHandler} TotalAmount={TotalAmount} UserName={props.UserName} TotalAmt={TotalAmount}    ></CheckoutForm>,
+        <CheckoutForm email={props.email} itemscount={itemscount} ordered={orderHandler} Array={Array} onclick={clickHandler} TotalAmount={TotalAmount} UserName={props.UserName} TotalAmt={TotalAmount}    ></CheckoutForm>,
         document.getElementById("cart-root")
       )}
       {ordered&&!checkout&&reactDom.createPortal(

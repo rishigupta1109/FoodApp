@@ -7,31 +7,31 @@ import useValidate from "../hooks/useValidate";
 // import { PromiseProvider } from "mongoose";
 Aos.init();
 const Login=(props)=>{
-    const [dispatchName,NameValidation,NameIsValid,Name]=useValidate("name");
+    const [dispatchemail,emailValidation,emailIsValid,email]=useValidate("email");
     const [dispatchPassword,PasswordValidation,PasswordIsValid,Password]=useValidate("password");
-    let valid=NameIsValid&&PasswordIsValid;
+    let valid=emailIsValid&&PasswordIsValid;
     // let loggedIn=false;
     
     
     
 
     async function sendData(){
-        const Url="http://localhost:80/SearchUser";
+        const Url="http://192.168.29.202:5500/SearchUser";
         const header={"content-type":'application/json' }
-        const Body= JSON.stringify({name:Name,password:Password});
-        console.log(Body);
-        const params={method:"POST",body:Body,headers:header}
+        const Body= JSON.stringify({email:email,password:Password});
+        
+        const params={method:"POST",body:Body,headers:header,credentials:"include"}
         const response =await fetch(Url,params);
         const data=await response;
         const obj= data.json();
         let founded=false;
-        obj.then((result)=>{console.log("data" ,result); props.UserNameHandler(result.name); founded=result.found; console.log(founded);
+        obj.then((result)=>{ props.UserNameHandler(result.name,result.email);  founded=result.found; ;
         if(founded){
            
             props.logIn();
         }
         else {
-           props.loginModal();
+           props.loginModal(result.message);
         }
     });
         
@@ -42,7 +42,7 @@ const Login=(props)=>{
         if(valid){
             sendData();
             
-            dispatchName({type:"reset"});
+            dispatchemail({type:"reset"});
             
             dispatchPassword({type:"reset"});
             // setNameISTouched(false);
@@ -51,7 +51,7 @@ const Login=(props)=>{
           
         }
         else{
-            dispatchName({type:"touched"});
+            dispatchemail({type:"touched"});
             dispatchPassword({type:"touched"});
         //     setNameISTouched(true);
         //     setLastNameISTouched(true);
@@ -61,11 +61,11 @@ const Login=(props)=>{
     }
    
     const NamechangeHandler=(e)=>{
-        dispatchName({type:"input",value:e.target.value});
+        dispatchemail({type:"input",value:e.target.value});
         
     }
     const NameBlurHandler=(e)=>{
-        dispatchName({type:"touched"});
+        dispatchemail({type:"touched"});
         
     }
     
@@ -77,18 +77,18 @@ const Login=(props)=>{
         dispatchPassword({type:"touched"});
         
     }
-    const Nameid= NameValidation? "Name-input":"Name-input invalid";
+    const Nameid= emailValidation? "Name-input":"Name-input invalid";
     const Passwordid= PasswordValidation? "Name-input":"Name-input invalid";
     return (<div id="container-box">
         <div id="container">
             <div id="login-container">
                 <div data-aos="fade-left" data-aos-duration="1000" id="login-login-container">
-        <div><h1>Login</h1></div>
+        <div><h1 id="signup-heading">Sign-In</h1></div>
             <form action="localhost/" method="POST" onSubmit={submitHandler}>
             <div className="input-container">
-                <label>FirstName :</label>
-                <input name="name" className={Nameid} type="text" value={Name} onBlur={NameBlurHandler} onChange={NamechangeHandler} />
-                {!NameValidation&&<p style={{color:"red"}}>please write a valid name</p>}
+                <label>Email :</label>
+                <input name="name" className={Nameid} type="text" value={email} onBlur={NameBlurHandler} onChange={NamechangeHandler} />
+                {!emailValidation&&<p style={{color:"red"}}>please write a valid email</p>}
             </div>
             
             <div className="input-container">
@@ -97,7 +97,7 @@ const Login=(props)=>{
                 {!PasswordValidation&&<p style={{color:"red"}}>please write a valid Password</p>}
             </div>
             <div className="input-container">
-                <button disabled={!valid} className="submit-button" >Submit</button>
+                <button disabled={!valid} className="submit-button" >SignIn</button>
                 <br></br>
             </div>
 

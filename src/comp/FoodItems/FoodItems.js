@@ -29,8 +29,8 @@ const FoodItems=(props)=>{
     const [isLoading,setisLoading]=useState(true);
     const GetInfo=async()=>{
         // setisLoading(true);
-        const Url="http://localhost:80/getfooditems";
-        const response = await fetch(Url);
+        const Url="http://192.168.29.202:5500/getfooditems";
+        const response = await fetch(Url,{method:'GET',credentials:"include"});
         const data=await response.json();
         console.log(data);
         setItems(data);

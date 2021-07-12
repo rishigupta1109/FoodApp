@@ -18,23 +18,32 @@ function App() {
   const [signup,setsignup]=useState(null);
   const [login,setlogin]=useState(null);
   const [UserName,setUserName]=useState("");
+  const [Useremail,setUseremail]=useState("");
   const [isLoading,setisLoading]=useState(null);
   const [modal,setModal]=useState(false);
   const [modalmessage,setModalmessage]=useState("");
-
+  
   const GetInfo=async()=>{
     setisLoading(true);
-    const Url="http://localhost:80/CheckLogin";
-    const response = await fetch(Url);
-    const data=await response.json();
+    const Url="http://192.168.29.202:5500/CheckLogin";
+    const header={"content-type":'application/json' };
+    const params={method:"POST",credentials:"include",body:JSON.stringify({work:"done"}),headers:header};
+    const response = await fetch(Url,params);
+    const Data= response.json();
+    let data={isloggedin:false ,userData:{name:"",email:""}};
+    await Data.then(value=>{data={...value}});
     console.log(data);
+    
+    
+    
     setisLoggedIn(data.isloggedin);
     // setlogin(!data.isloggedin);
     setsignup(!data.isloggedin);
-    setUserName(data.name);
+    if(data.isloggedin){setUserName(data.userData.name);
+    setUseremail(data.userData.email);}
     setisLoading(false);
   }
-  useEffect(()=>{GetInfo()},[]);
+  useEffect(()=>{GetInfo();},[]);
 
   const loginhandler=()=>{
     setlogin(true);
@@ -70,16 +79,21 @@ function App() {
      if(value.name===obj.name){
        bool=true;
       cartFoodArray[index].amount=Number(cartFoodArray[index].amount)+Number(obj.amount);
+      if(cartFoodArray[index].amount===0){
+        cartFoodArray.splice(index,1);
+      }
       setcartFoodArray([...cartFoodArray]);
      }
+     
    }))
     if(!bool){setcartFoodArray([...cartFoodArray,obj]);}
   }
   let noofitems=0;
   
   cartFoodArray.forEach((data)=>{noofitems=noofitems+Number(data.amount)});
-  const UserNameHandler=(name)=>{
+  const UserNameHandler=(name,email)=>{
     setUserName(name);
+    setUseremail(email);
 
   }
   const amountChangeHandler=(name,amount)=>{
@@ -114,12 +128,9 @@ function App() {
   const closeModal=()=>{
     setModal(false);
   }
-  const loginModal=()=>{
-    
-
-    
+  const loginModal=(message)=>{
       setModal(true);
-      setModalmessage("wrong user id or password");
+      setModalmessage(message);
   }
   
 
@@ -131,15 +142,15 @@ function App() {
     <div id="App">
       {modal&&<Modal message={modalmessage} closeModal={closeModal}></Modal>}
     <Context.Provider value={{Cart:cart ,amountChange:amountChangeHandler}}>
-    <Navbar openYourorder={openYourorder} isLoggedIn={isLoggedIn}  logout={logoutHandler} sticky={cart} itemsNo={noofitems} onclick={navbarcartcall} UserName={UserName}></Navbar>
+    <Navbar openYourorder={openYourorder} isLoggedIn={isLoggedIn} email={Useremail}  logout={logoutHandler} sticky={cart} itemsNo={noofitems} onclick={navbarcartcall} UserName={UserName}></Navbar>
     {isLoggedIn&&<><Details></Details>
       <FoodItemContainer onclick={FoodCartObject} cartFoodArray={cartFoodArray} ></FoodItemContainer></>}
      {signup&&<Signup signupmodal={signupmodal} login={loginhandler}></Signup>}
     {login&& <Login loginModal={loginModal} signup={signuphandler} logIn={loggedIn} UserNameHandler={UserNameHandler}></Login>}
     {isLoading&&<div id="loading-box"><h2 id="loading-text">Loading<img id="loading-img" src={loading} alt="loading" ></img></h2></div>}
     
-    {yourOrderBackDrop&&<YourOrderBackDrop onclick={yourorderhandler} UserName={UserName}></YourOrderBackDrop>}
-    {cart&&<BackdropCart UserName={UserName} reset={resetArray} obj={cartFoodArray}  onclick={navbarcartcall}></BackdropCart>}
+    {yourOrderBackDrop&&<YourOrderBackDrop email={Useremail} onclick={yourorderhandler} UserName={UserName}></YourOrderBackDrop>}
+    {cart&&<BackdropCart email={Useremail} UserName={UserName} reset={resetArray} obj={cartFoodArray}  onclick={navbarcartcall}></BackdropCart>}
       </Context.Provider> 
     </div>
   );

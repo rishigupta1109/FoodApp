@@ -28,7 +28,7 @@ input[type="text"]{
     padding: 15px;
     box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.527);
     border-radius: 10px;
-    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
+    background-image: linear-gradient(to bottom right, rgb(255, 115, 0), rgb(235, 179, 75));
 }
 .submit-btn{
     margin-top:10px;
@@ -37,7 +37,7 @@ input[type="text"]{
     width:6rem;
     border-color:orange;
     border-radius:10px;
-    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
+    background-image: linear-gradient(to bottom right, rgb(255, 115, 0), rgb(235, 179, 75));
 }
 .cart{
     z-index: 3;
@@ -72,8 +72,8 @@ input[type="text"]{
     border-radius: 5px;
     margin: 15px;
     margin-left:300px;
-    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
-}
+    background-image: linear-gradient(to bottom right, rgb(255, 115, 0), rgb(235, 179, 75));}
+    
 #order-button:hover{
     background-image: linear-gradient(to bottom ,orange,orange);
     box-shadow: 0px 7px 7px 0 rgba(248, 52, 3, 0.158), 0px 7px 7px rgba(255, 38, 0, 0.178);}
@@ -124,6 +124,6 @@ input[type="text"]{
     font-weight: bolder;
     border-radius: 5px;
     border-color: rgb(243, 118, 2);
-    background-image: linear-gradient(to bottom ,orange,rgb(255, 196, 0));
+    background-image: linear-gradient(to bottom right, rgb(255, 115, 0), rgb(235, 179, 75));
 
 }

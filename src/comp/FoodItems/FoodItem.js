@@ -5,18 +5,6 @@ import React,{useContext,useState,useEffect,useRef} from "react";
 const FoodItem=(props)=>{
     const input=useRef();
     const ctx=useContext(Context);
-    const clickHandler=()=>{
-      if(value!==0)  {props.onclick({
-            src:props.src,
-            name:props.name,
-            amount:value,
-            price:props.price,
-            id:props.id,
-            Total:props.price*value
-
-        })
-}
-    }
     const [value,setvalue]=useState('0');
     
     const valueChanger=(e)=>{

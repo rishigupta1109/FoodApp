@@ -4,11 +4,11 @@ import DropdownS from "../UI/dropdown";
 // import ReactDom from "react-dom";
 const Navbar=(props)=>{
     async function sendlogout(){
-        const Url="http://localhost:80/logoutUser";
+        const Url="http://192.168.29.202:5500/logoutUser";
         const header={"content-type":'application/json' }
-        const Body= JSON.stringify({name:props.UserName});
+        const Body= JSON.stringify({email:props.email});
         console.log(Body);
-        const params={method:"POST",body:Body,headers:header}
+        const params={method:"POST",body:Body,headers:header,credentials:"include"}
         const response =await fetch(Url,params);
         const data=await response;
         const obj= data.json();
@@ -30,7 +30,7 @@ const Navbar=(props)=>{
         <div id="Navbar" style={{position:props.sticky?"initial":"sticky"}}>
                <div id="head-part"> 
                 <img id="logo" src={logo} alt="logo"></img>
-                <h1 id="heading">FoodZinga</h1>  
+                <h1 id="heading">FoodBaZinga</h1>  
                 </div>
                 <div id="bottom-part">
                {props.isLoggedIn && <h1 id="UserName"><DropdownS openYourorder={props.openYourorder} logout={logoutHandler} userName={props.UserName}></DropdownS> </h1>}

@@ -7,7 +7,7 @@ const YourOrderBackDrop=(props)=>{
     }
     return(<>
         {reactDom.createPortal(<Backdrop onclick={clickHandler}></Backdrop>, document.getElementById("backdrop-root"))}
-        {reactDom.createPortal(<YourOrders onclick={clickHandler} UserName={props.UserName}></YourOrders>,document.getElementById("cart-root"))}
+        {reactDom.createPortal(<YourOrders email={props.email} onclick={clickHandler} UserName={props.UserName}></YourOrders>,document.getElementById("cart-root"))}
 </>
     )
 }

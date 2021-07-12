@@ -11,15 +11,15 @@ Aos.init();
 
 const YourOrders=(props)=>{
  
-  const [order,setorder]=useState([]);
+  const [order,setorder]=useState([{orders:[]}]);
     const getorders=async()=>{
-        const Url="http://localhost:80/getOrder";
+        const Url="http://192.168.29.202:5500/getOrder";
         console.log(props.UserName);
         const Order=JSON.stringify({
-          user:props.UserName
+          email:props.email
         });
         const header={"content-type":'application/json' }
-        const params={method:"POST",body:Order,headers:header};
+        const params={method:"POST",body:Order,headers:header,credentials:"include"};
         const response=await fetch(Url,params);
         const data=response.json();
         console.log(data);
@@ -30,7 +30,7 @@ const YourOrders=(props)=>{
     const clickHandler=()=>{
       props.onclick();
     }
-
+    console.log("length",order[0].orders.length);
 
     return(<div data-aos="zoom-in" className="cart">
         <div id="YO-container">
@@ -38,7 +38,7 @@ const YourOrders=(props)=>{
         <h1 id="YO">Your Orders</h1>
         <button id="crossbut" onClick={clickHandler}><img src="http://simpleicon.com/wp-content/uploads/cross.png" id="crossimg" alt="cross"></img></button>
         </div>
-        {order.length===1&&<h1>No orders </h1>}
+        {order[0].orders.length===0&&<h1>No orders </h1>}
         <div id="accordtions-container">
        {order.length>0&&order[0].orders.map((Order,index)=>{console.log(index);
          return  (<Accordion >

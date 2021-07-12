@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 Aos.init();
 const CheckoutForm=(props)=>{
   const [UserName,setUserName]=useState(props.UserName);
+  const [Useremail,setUseremail]=useState(props.email);
   const [dispatchName,NameValidation,NameIsValid,Name]=useValidate("name",props.UserName);
   const [dispatchAdress,AdressValidation,AdressIsValid,Adress]=useValidate("name");
   const [dispatchCardNo,CardNoValidation,CardNoIsValid,CardNo]=useValidate("cardno");
@@ -24,6 +25,7 @@ const clickHandler=(e)=>{
     username:UserName,
     Adress:Adress,
     CardNo:CardNo,
+    email:Useremail,
     CVV:CVV,
     date:new Date(),
     items:props.Array,
@@ -44,10 +46,11 @@ else{
 }
 }
 const sendOrder=async()=>{
-  const Url="http://localhost:80/setOrder";
+  const Url="http://192.168.29.202:5500/setOrder";
   const Order=JSON.stringify({
     user:props.UserName,
     username:UserName,
+    email:Useremail,
     Adress:Adress,
     CardNo:CardNo,
     CVV:CVV,

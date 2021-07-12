@@ -1,11 +1,40 @@
 const express=require("express");
-const app=express();
+
 const mongoose=require("mongoose");
+
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);
+ 
+var app = express();
+var store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/UserData',
+  connectionOptions: {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 10000
+  },
+  collection: 'mySessions'
+});
+ 
+// Catch errors
+store.on('error', function(error) {
+  console.log(error);
+});
+ 
+app.use(require('express-session')({
+  secret: 'Tdgrdgctx4tt',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+ store:store,
+  resave: false,
+  saveUninitialized: true
+}));
 mongoose.connect('mongodb://localhost:27017/UserData',{useNewUrlParser:true,useUnifiedTopology:true});
 var cors = require('cors');
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://192.168.29.202:3000',
     credentials: true
 }));
 const db = mongoose.connection;
@@ -16,7 +45,7 @@ db.once('open', function() {
 const schema= new mongoose.Schema({
     name: String ,
     password: String,
-    isloggedin:Boolean,
+    email:String,
     orders:Array,
 })
 const foodschema=new mongoose.Schema({
@@ -41,7 +70,7 @@ const signup=async(req,res)=>{
         (err,data)=>{
            if( data.length===0){
             console.log(req.body);
-            const userData={name:req.body.name,password:req.body.password,isloggedin:false};
+            const userData={name:req.body.name,password:req.body.password,email:req.body.email};
             
              const user=new Data(userData);
             user.save((err,user)=>{
@@ -69,20 +98,21 @@ app.post("/CreateUser",(req,res)=>{
 app.post("/SearchUser",(req,res)=>{
    
     console.log(req.body);
-    const userData={name:req.body.name,password:req.body.password,found:true};
+    let userData={email:req.body.email,password:req.body.password,found:true};
     
     let found=undefined;
     Data.find(
-        {name:req.body.name},
+        {email:req.body.email},
         (err,Data)=>{
-            console.log(Data);
+           
+            console.log("data",Data);
           
             if(Data.length!==0)  {
                 console.log(Data[0].password);
-                if(Data[0].password===req.body.password){console.log(true);  found=true; res.json(userData);}
-                else{res.json({found:false}); console.log(false)}
+                if(Data[0].password===req.body.password){ req.session.email=req.body.email;console.log("id",req.sessionID);userData={...userData, name:Data[0].name};  found=true; res.json(userData);}
+                else{res.json({message:"wrong password",found:false}); console.log(false)}
             }
-            else{res.json({found:false}); console.log(false)}
+            else{res.json({message:"User not found",found:false}); console.log(false)}
             console.log(userData);
         }
        
@@ -91,7 +121,7 @@ app.post("/SearchUser",(req,res)=>{
     );
     
     
-    Data.findOneAndUpdate({name:req.body.name}, {$set:{isloggedin:true}},function(err, doc){
+    Data.findOneAndUpdate({email:req.body.email}, {$set:{isloggedin:true}},function(err, doc){
         if(err){
             console.log("Something wrong when updating data!");
         }
@@ -101,16 +131,37 @@ app.post("/SearchUser",(req,res)=>{
     
 
 })
-const checklogin=async(res)=>{
-    let bool=false;
-   await Data.find((err,Data)=>{Data.forEach((element)=>{if(element.isloggedin){res.send(element);console.log(element); bool=true} return true;})});
-    if(!bool){res.send({isloggedin:false})}
+
+const checklogin=async(req,res)=>{
+    console.log("req",req.sessionID);
+    let userData={};
+   if(req.session.email){ await Data.find({email:req.session.email},(err,data)=>{
+       userData=data[0]; 
+   });}
+   
+
+
+if(req.session.email){
+   
+    let Data={userData, "isloggedin": true};
+    console.log("data",Data);
+    res.send(Data);
+
+}else{
+    res.send({
+        "isloggedin": false
+    })
 }
-app.get("/CheckLogin",(req,res)=>{
-    checklogin(res);
+
+}
+app.post("/CheckLogin",(req,res)=>{
+    checklogin(req,res);
 })
 app.post("/logoutUser",(req,res)=>{
-    Data.findOneAndUpdate({name:req.body.name}, {$set:{isloggedin:false}},function(err, doc){
+    req.session.destroy(function(err) {
+       console.log("session destroyed");
+      })
+    Data.findOneAndUpdate({email:req.body.email}, {$set:{isloggedin:false}},function(err, doc){
         if(err){
             console.log("Something wrong when updating data!");
         }
@@ -127,21 +178,22 @@ const getfooditems=async(res)=>{
 app.get("/getfooditems",(req,res)=>{
     getfooditems(res);
 })
+
 const setOrder=async(req,res)=>{
     let orderdata=[];
-    await Data.find({name:req.body.user},(err,data)=>{console.log(data); orderdata=[...data[0].orders]});
-    await Data.findOneAndUpdate({name:req.body.user},{$set:{orders:[...orderdata,req.body]}});
+    await Data.find({email:req.body.email},(err,data)=>{console.log(data); orderdata=[...data[0].orders]});
+    await Data.findOneAndUpdate({email:req.body.email},{$set:{orders:[...orderdata,req.body]}});
     await res.send({success:true});
 }
 app.post("/setOrder",(req,res)=>{
     setOrder(req,res);
 })
 app.post("/getOrder",(req,res)=>{
-    console.log(req.body.user);
-    Data.find({name:req.body.user},(err,data)=>{
+    console.log(req.body.email);
+    Data.find({email:req.body.email},(err,data)=>{
         res.send(data);
         console.log("value",data);
     });
 })
 
-app.listen(80, () => { console.log('listening to 80') });
+app.listen(5500,"192.168.29.202");
